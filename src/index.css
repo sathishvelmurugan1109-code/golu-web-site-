@@ -1,0 +1,313 @@
+@import "tailwindcss";
+
+@theme {
+  --color-maroon-50: #fdf2f4;
+  --color-maroon-100: #f7dfe3;
+  --color-maroon-500: #8a2237;
+  --color-maroon-600: #6d1a2d;
+  --color-maroon-700: #5c1220;
+  --color-maroon-800: #430d18;
+  --color-maroon-900: #2c0810;
+
+  --color-gold-50: #fdf8ec;
+  --color-gold-100: #f8ecca;
+  --color-gold-200: #f0dc9e;
+  --color-gold-300: #e9c77b;
+  --color-gold-400: #dcb354;
+  --color-gold-500: #d4a53f;
+  --color-gold-600: #b8862b;
+  --color-gold-700: #966b22;
+
+  --color-cream-50: #fffdf7;
+  --color-cream-100: #fdf9ee;
+  --color-cream-200: #faf3e0;
+  --color-cream-300: #f3e7cc;
+
+  --color-cocoa-500: #6b4a32;
+  --color-cocoa-600: #4c3322;
+  --color-cocoa-700: #3b2417;
+  --color-cocoa-800: #2a1a10;
+  --color-cocoa-900: #1d1209;
+
+  --color-brand-red: #a8322d;
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Jost", "Segoe UI", sans-serif;
+
+  --shadow-soft: 0 10px 30px -10px rgb(92 18 32 / 0.18);
+  --shadow-card: 0 18px 45px -18px rgb(92 18 32 / 0.35);
+  --shadow-gold: 0 0 0 1px rgb(212 165 63 / 0.45);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream-100);
+  color: var(--color-cocoa-800);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-maroon-700);
+  color: var(--color-gold-200);
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@keyframes why-card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.reveal.is-visible .why-card {
+  animation: why-card-rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.reveal.is-visible .why-card:nth-child(2) {
+  animation-delay: 120ms;
+}
+.reveal.is-visible .why-card:nth-child(3) {
+  animation-delay: 240ms;
+}
+.reveal.is-visible .why-card:nth-child(4) {
+  animation-delay: 360ms;
+}
+.reveal.is-visible .why-card:nth-child(5) {
+  animation-delay: 480ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-zoom,
+  .hero-anim,
+  .animate-hero-float,
+  .animate-drift,
+  .animate-floaty,
+  .animate-floaty-slow,
+  .animate-wa-ping,
+  .animate-flame {
+    animation: none;
+  }
+  .hero-anim {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal.is-visible .why-card {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ---------- Decorative traditional pattern ---------- */
+.pattern-paisley {
+  background-image: radial-gradient(
+      circle at 1px 1px,
+      rgb(212 165 63 / 0.28) 1px,
+      transparent 0
+    );
+  background-size: 22px 22px;
+}
+.pattern-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gold-500),
+    transparent
+  );
+}
+
+/* ---------- Floating animation (hero decorations) ---------- */
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(3deg);
+  }
+}
+.animate-floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
+.animate-floaty-slow {
+  animation: floaty 9s ease-in-out infinite;
+}
+/* ---------- Diya flame flicker (Why Choose Us) ---------- */
+@keyframes flame-flicker {
+  0%,
+  100% {
+    transform: scale(1, 1) rotate(-1deg);
+    opacity: 0.95;
+  }
+  25% {
+    transform: scale(1.08, 0.92) rotate(1.5deg);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(0.94, 1.1) rotate(-2deg);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(1.05, 0.95) rotate(1deg);
+    opacity: 0.9;
+  }
+}
+.animate-flame {
+  animation: flame-flicker 1.8s ease-in-out infinite;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
+}
+
+/* ---------- Luxury hero animations ---------- */
+@keyframes hero-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+.animate-hero-zoom {
+  animation: hero-zoom 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-anim {
+  animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ---------- Gentle float for hero idol image ---------- */
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.animate-hero-float {
+  animation: hero-float 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ---------- Gentle pulse ring for WhatsApp FAB ---------- */
+@keyframes wa-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  80%,
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+.animate-wa-ping {
+  animation: wa-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ---------- Fade-in for search overlay ---------- */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out;
+}
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-slide-down {
+  animation: slide-down 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- Shimmer loading ---------- */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(253 249 238 / 0.75),
+    transparent
+  );
+  animation: shimmer 1.6s infinite;
+}
+
+/* ---------- Custom scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream-200);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-500);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-600);
+}
+
+/* Hide number input arrows */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
